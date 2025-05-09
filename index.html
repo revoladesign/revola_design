@@ -1,76 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rêvola Design</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>Rêvola Design</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#portfolio">Portifolio</a>
-      <a href="#services" id="servicesLink">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="navbar">
+      <img src="logo.png" alt="logo" class="logo">
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <section id="home">
-    <h2>كل ما تحتاجه من تصاميم احترافية بلمسة مميزة تجده هنا ..</h2>
-    <button class="cta">Sign up</button>
-    <button class="cta">Sign up</button>
-  </section>
-
-  <section id="aboutus">
-    <h2>About us</h2>
-    <p>“At Rêvola Design, we create beauty from simplicity!<br>
-    We’re a passionate team dedicated to designing presentations, posters, cards, and more — all with a modern touch.<br>
-    We believe that every small detail has the power to make a big impact.”</p>
-  </section>
-
-  <section id="portfolio">
-    <h2>Portifolio</h2>
-    <p>A little gallery of what we love to do</p>
-    <div class="gallery">
-      <div class="item" onclick="showSignup()">Presentation of a student</div>
-      <div class="item" onclick="showSignup()">Certificate of participation by a media club</div>
-      <div class="item" onclick="showSignup()">Poster for a student specializing in nature and life sciences</div>
+  <section id="home" class="home-section">
+    <div class="home-left">
+      <img src="home.jpg" alt="Home Image">
+    </div>
+    <div class="home-right">
+      <h1>تصاميم كيوت وعصرية</h1>
+      <p>في Rêvola Design نخلق الجمال من البساطة!</p>
+      <button class="signup-btn" onclick="openPopup()">Sign up</button>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Nom" required />
-      <input type="email" placeholder="Gmail" required />
-      <textarea placeholder="Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+  <footer class="home-footer">
+    <p>Follow me</p>
+    <div class="social-icons">
+      <span>📘</span>
+      <span>📸</span>
+      <span>🎵</span>
+    </div>
+  </footer>
 
-  <div id="signup-popup" class="popup">
+  <div id="popup" class="popup">
     <div class="popup-content">
-      <span class="close" onclick="closeSignup()">&times;</span>
-      <h3>Sign up</h3>
-      <p>Signup form or CTA goes here.</p>
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2>مرحبا بك في Rêvola!</h2>
+      <p>سجّل معنا لتصلك أحدث التصاميم!</p>
     </div>
   </div>
 
-  <script>
-    document.getElementById("servicesLink").addEventListener("click", function(e) {
-      e.preventDefault();
-      document.querySelector(".cta").scrollIntoView({ behavior: 'smooth' });
-    });
-
-    function showSignup() {
-      document.getElementById("signup-popup").style.display = "flex";
-    }
-
-    function closeSignup() {
-      document.getElementById("signup-popup").style.display = "none";
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
