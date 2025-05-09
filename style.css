@@ -74,9 +74,9 @@ nav a:hover {
 }
 
 .home-footer {
+  background-color: #B8ADAB;
   text-align: center;
-  margin-top: 40px;
-  padding-bottom: 30px;
+  padding: 30px 0;
   font-family: 'Amiri', serif;
   color: #441431;
 }
