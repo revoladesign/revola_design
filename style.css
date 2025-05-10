@@ -11,6 +11,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
+  direction: ltr; /* نحتاجها حتى يسار ويمين يشتغلو صح */
+}
+
+.logo {
+  height: 40px;
 }
 
 .nav-links {
