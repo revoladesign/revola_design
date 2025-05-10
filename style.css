@@ -387,4 +387,6 @@ direction: ltr;
   font-family: 'Amiri', serif;
   cursor: pointer;
   font-size: 1rem;
+  display: block;
+margin: 20px auto 0;
 }
