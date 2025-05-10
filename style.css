@@ -78,6 +78,13 @@ body {
   margin: 20px 0;
 }
 
+.sub-description {
+  font-size: 1.1rem;
+  font-family: 'Tajawal', sans-serif;
+  color: #441431;
+  margin: 10px 0 20px;
+}
+
 .home-footer {
   background-color: #B8ADAB;
   text-align: center;
