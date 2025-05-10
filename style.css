@@ -10,8 +10,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row-reverse;
   padding: 10px 30px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Amiri', serif;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.signup-btn {
+  background-color: #DCDDD1;
+  color: #441431;
+  border: none;
+  padding: 8px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'Amiri', serif;
 }
 
 .logo {
