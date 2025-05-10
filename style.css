@@ -11,12 +11,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
-  direction: ltr; /* ضروري للمحاذاة الصحيحة */
+  direction: ltr;
 }
 
 .logo {
   height: 40px;
-  margin-right: 15px;
 }
 
 .nav-links {
@@ -44,18 +43,6 @@ body {
   font-size: 1rem;
   font-family: 'Amiri', serif;
   cursor: pointer;
-}
-
-nav a {
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: 'Amiri', serif;
-}
-
-nav a:hover {
-  text-decoration: underline;
 }
 
 .home-section {
@@ -89,17 +76,6 @@ nav a:hover {
   font-family: 'Tajawal', sans-serif;
   color: #441431;
   margin: 20px 0;
-}
-
-.signup-btn {
-  background-color: #DCDDD1;
-  color: #441431;
-  border: none;
-  padding: 10px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  font-family: 'Amiri', serif;
 }
 
 .home-footer {
