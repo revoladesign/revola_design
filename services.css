@@ -35,8 +35,10 @@ body {
   color: #DCDDD1;
   text-decoration: none;
   font-family: 'Amiri', serif;
-  font-size: 1rem;
+  font-size: 1.3rem;      /* تكبير الخط */
   cursor: pointer;
+  direction: rtl;         /* اتجاه من اليمين لليسار */
+  text-align: right;      /* ترتيب النص على اليمين */
 }
 
 .submenu {
