@@ -345,6 +345,8 @@ nav ul li a:hover {
   font-size: 2rem;
   color: #B8ADAB;
   margin-bottom: 20px;
+  text-align: left;
+direction: ltr;
 }
 
 .form-group {
