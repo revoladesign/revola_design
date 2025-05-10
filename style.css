@@ -1,213 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Amiri, serif;
+}
+
 body {
-  margin: 0;
-  font-family: 'Amiri', serif;
-  background-color: #ffffff;
-  color: #441431;
+    background-color: #B8ADAB;
 }
 
 .navbar {
-  background-color: #441431;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 20px; /* تصغير التباعد */
-  direction: ltr;
+    background-color: #441431;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo {
-  height: 30px; /* بدل 40px */
+.nav-items {
+    display: flex;
+    list-style-type: none;
 }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-family: 'Amiri', serif;
-  font-weight: bold;
-  font-size: 0.9rem; /* تصغير الخط */
-  margin: 0 5px; /* تقليل المسافة */
+.nav-items li {
+    color: #DCDDD1;
+    margin: 0 15px;
+    cursor: pointer;
+    font-family: Amiri, serif;
 }
 
-.signup-btn {
-  background-color: #DCDDD1;
-  color: #441431;
-  border: none;
-  padding: 6px 15px; /* أصغر */
-  border-radius: 30px;
-  font-size: 0.9rem;
-  font-family: 'Amiri', serif;
-  cursor: pointer;
+.navbar .signup-icon {
+    background-color: #B8ADAB;
+    padding: 10px 20px;
+    color: #441431;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Amiri, serif;
 }
 
-.home-section {
-  display: flex;
-  background-color: #B8ADAB;
-  padding: 40px;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.home-section.new-home {
-  background-color: #B8ADAB !important;
-  padding: 40px;
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
 }
 
-.home-left img {
-  max-width: 100%;
-  border-radius: 16%;
-  height: auto;
+.left {
+    width: 50%;
 }
 
-.home-right {
-  max-width: 500px;
-  padding: 20px;
-  text-align: right;
+.home-img {
+    width: 100%;
 }
 
-.home-right h1 {
-  font-size: 2.5rem;
-  color: #441431;
+.right {
+    width: 40%;
 }
 
-.home-right p {
-  font-size: 1.2rem;
-  font-family: 'Tajawal', sans-serif;
-  color: #441431;
-  margin: 20px 0;
+.right h1 {
+    font-family: Amiri, serif;
+    color: #441431;
 }
 
-.signup-btn {
-  background-color: #DCDDD1;
-  color: #441431;
-  border: none;
-  padding: 10px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  font-family: 'Amiri', serif;
+.right p {
+    font-family: Afeesh, serif;
+    color: #441431;
 }
 
-.home-footer {
-  background-color: #B8ADAB;
-  text-align: center;
-  padding: 30px 0;
-  font-family: 'Amiri', serif;
-  color: #441431;
+.signup-round {
+    background-color: #DCDDD1;
+    color: #441431;
+    padding: 15px;
+    border-radius: 50%;
+    text-align: center;
+    margin-top: 20px;
+    font-family: Amiri, serif;
+}
+
+.footer {
+    background-color: #B8ADAB;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer p {
+    color: #441431;
 }
 
 .social-icons {
-  font-size: 1.5rem;
-  margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-.social-icons span {
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.popup-content {
-  background-color: #fff;
-  color: #441431;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  position: relative;
-  width: 300px;
-}
-
-.close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-
-
-/* General Settings */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Amiri', serif;
-}
-
-/* Navbar */
-nav {
-  background-color: #50183A;
-  padding: 20px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-nav .logo {
-  color: #DCDDD1;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #DCDDD1;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #ffffff;
-}
-
-.logo-title {
-  font-family: 'Amiri', serif;
-  font-size: 2.2rem;
-  color: #441431;
-  margin-bottom: 10px;
-}
-
-.main-description {
-  font-size: 0.9rem;
-  font-family: 'Tajawal', sans-serif;
-  color: #441431;
-  margin-bottom: 20px;
-}
-
-/* Home Section */
-.home-section {
-  height: 100vh;
-  background: linear-gradient(to right, #DCDDD1, #f2f2f2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.home-section h1 {
-  font-size: 60px;
-  color: #50183A;
+.social-icons i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #441431;
 }
 
 /* About Section */
