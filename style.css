@@ -360,7 +360,7 @@ nav ul li a:hover {
 
 .contact-input,
 .contact-textarea {
-  width: 100%;
+  width: 350px;
   background-color: rgba(188, 189, 177, 0.5);
   border: none;
   border-radius: 10px;
