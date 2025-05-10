@@ -45,6 +45,16 @@ body {
   cursor: pointer;
 }
 
+.home-image {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.home-image img {
+  max-width: 300px;
+  border-radius: 16%;
+}
+
 .new-home {
   background-color: #B8ADAB;
   padding: 60px 20px;
