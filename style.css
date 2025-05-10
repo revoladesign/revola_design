@@ -54,6 +54,10 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
+.home-section.new-home {
+  background-color: #B8ADAB !important;
+  padding: 40px;
+}
 
 .home-left img {
   max-width: 100%;
