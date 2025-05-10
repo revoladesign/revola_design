@@ -9,41 +9,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Tajawal&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <img src="logo.png" alt="Logo" class="logo">
 
-      <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About us</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<header>
+  <div class="navbar">
+    <img src="logo.png" alt="Logo" class="logo">
 
-      <button class="signup-btn">Sign up</button>
-    </div>
-  </header>
-  
-  <div class="home-image">
-  <img src="home.jpg" alt="Home Image">
-</div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About us</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-<section id="home" class="home-section new-home">
-  <div class="home-content">
-    <h1 class="main-title">Welcome to Rêvola Design</h1>
-    <p class="main-description">كل ما تحتاجه من تصاميم احترافية بلمسة مميزة تجده هنا ..</p>
     <button class="signup-btn">Sign up</button>
-    
-    
-    <p class="follow-text">Follow me</p>
+  </div>
+</header>
+
+  <section id="home" class="home-section">
+    <div class="home-left">
+      <img src="home.jpg" alt="Home Image">
+    </div>
+    <div class="home-right">
+      <h1>تصاميم كيوت وعصريةكل ما تحتاجه من تصاميم احترافية بلمسة مميزة تجده هنا ..</h1>
+      <button class="signup-btn" onclick="openPopup()">Sign up</button>
+    </div>
+  </section>
+
+  <footer class="home-footer">
+    <p>Follow me</p>
     <div class="social-icons">
       <span>🌸</span>
       <span>🌸</span>
       <span>🌸</span>
     </div>
+  </footer>
+
+  <div id="signup-popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h3>التسجيل</h3>
+      <p>يرجى ملء النموذج للتسجيل.</p>
+    </div>
   </div>
-</section>
+
+  <script src="script.js"></script>
+</body>
 </html>
 
 
