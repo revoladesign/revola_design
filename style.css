@@ -356,6 +356,8 @@ nav ul li a:hover {
   font-family: 'Amiri', serif;
   color: #B8ADAB;
   margin-bottom: 5px;
+  text-align: left;
+direction: ltr;
 }
 
 .contact-input,
