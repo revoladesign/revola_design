@@ -34,7 +34,8 @@ function toggleSignup(btn) {
   });
 </script>
 
-<script>
+// كود فتح وإغلاق القائمة الجانبية عند الضغط على ☰
+document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.querySelector('.menu-icon');
   const sidebar = document.getElementById('sidebar');
 
@@ -45,5 +46,4 @@ function toggleSignup(btn) {
       sidebar.style.right = "0px";
     }
   });
-</script>
-
+});
