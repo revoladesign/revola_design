@@ -30,18 +30,33 @@
 <!-- أيقونة القائمة -->
 <div class="menu-icon">☰</div>
 
+<!-- القائمة الجانبية --><!-- الشريط العلوي -->
+<header class="topbar">
+  <div class="logo">Rêvola Design</div>
+  <div id="menu-btn" class="menu-btn">☰</div> <!-- أيقونة الثلاث خطوط -->
+</header>
+
 <!-- القائمة الجانبية -->
-<div id="sidebar" class="sidebar">
-  <div class="sidebar-content">
-    <img src="revola-logo.png" alt="Logo" class="sidebar-logo">
-    <a href="index.html">Home</a>
-    <a href="about.html">About us</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portifolio</a>
-    <a href="contact.html">Contact</a>
-    <a href="#" class="signup-btn">Sign up</a>
+<nav id="side-menu" class="side-menu">
+  <div class="side-menu-content">
+    <div class="side-menu-logo">Rêvola Design</div>
+    <ul class="menu-list">
+      <li><a href="#" data-page="home">Home</a></li>
+      <li><a href="#" data-page="about">About us</a></li>
+      <li><a href="#" data-page="services">Services</a></li>
+      <li><a href="#" data-page="portfolio">Portfolio</a></li>
+      <li><a href="#" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="signup-icon">
+      <a href="#" data-page="signup">Sign up</a>
+    </div>
   </div>
-</div>
+</nav>
+
+<!-- المحتوى الرئيسي -->
+<main id="main-content">
+  <!-- هنا سيظهر محتوى الصفحات -->
+</main> 
 
 <script src="menu.js"></script>
 </body>
