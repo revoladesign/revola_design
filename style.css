@@ -488,3 +488,16 @@ margin: 20px auto 0;
   border: 2px solid #D4D2C9; /* إطار خفيف أنيق */
   cursor: pointer;
 }
+
+.navbar {
+  position: relative; /* أو fixed إذا حابة يثبت */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #441431;
+  color: #DCDDD1;
+  padding: 15px 25px;
+}
