@@ -471,3 +471,12 @@ margin: 20px auto 0;
   border-radius: 50%;
   cursor: pointer;
 }
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;        /* يجعلها دائرية */
+  object-fit: cover;         /* لملء الإطار بشكل متناسق */
+  border: 2px solid #D4D2C9; /* إطار خفيف أنيق */
+  cursor: pointer;
+}
