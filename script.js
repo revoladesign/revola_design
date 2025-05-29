@@ -23,6 +23,14 @@ document.getElementById("signup-form").addEventListener("submit", function(e) {
   }
 });
 
+function toggleMenu() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('show');
+}
+
+function goHome() {
+  window.location.href = "index.html"; // يرجع للصفحة الرئيسية
+}
 
     function openSignup() {
   document.getElementById("signup-modal").style.display = "flex";
