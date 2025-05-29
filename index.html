@@ -159,3 +159,37 @@
 </section>
 
 
+<!-- نافذة Sign up -->
+<div id="signup-modal" class="signup-modal">
+  <div class="signup-content">
+    <span class="close-btn" onclick="closeSignup()">&times;</span>
+    <h2>Sign up</h2>
+    <form id="signup-form">
+      <input type="text" placeholder="Full name" required>
+      
+      <select required>
+        <option disabled selected>Current status</option>
+        <option>Étudiant</option>
+        <option>Mutif</option>
+      </select>
+
+      <select required>
+        <option disabled selected>Wilaya</option>
+        <!-- من 1 إلى 58 -->
+        <script>
+          for(let i=1;i<=58;i++){
+            document.write(`<option>${i}</option>`);
+          }
+        </script>
+      </select>
+
+      <input type="tel" placeholder="Phone number" required>
+      <input type="email" placeholder="Email" required>
+
+      <button type="submit" class="confirm-btn">Confirmation</button>
+
+      <p class="google-login">أو سجل عبر Google</p>
+    </form>
+  </div>
+</div>
+
