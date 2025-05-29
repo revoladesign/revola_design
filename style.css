@@ -287,12 +287,17 @@ body {
   gap: 40px;
 }
 
+  .contact-video {
+  width: 35%;
+  display: flex;
+  justify-content: center;
+}
+
 .contact-video {
   width: 100%;
   max-width: 400px;
-  border-radius: 15%;
-  display: block;
-  margin: 0 auto;
+  border-radius: 16%;
+  object-fit: cover;
 }
 
 .contact-content {
