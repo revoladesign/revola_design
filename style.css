@@ -79,9 +79,13 @@ body {
   background-color: #B8ADAB;
 }
 
-.left-image img {
-  width: 380px;
-  border-radius: 16%;
+.image-side img {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 15%;
+  display: block;
+  margin: 0 auto;
 }
 
 .right-content {
