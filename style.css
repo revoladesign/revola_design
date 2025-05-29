@@ -70,16 +70,17 @@ body {
   cursor: pointer;
 }
 
-.sidebar {
+/* القائمة الجانبية Sidebar */
+#sidebar {
   position: fixed;
   top: 0;
-  right: -250px;
+  right: -250px; /* البداية مخفية */
   width: 250px;
   height: 100%;
   background-color: #441431;
-  transition: right 0.3s ease;
-  z-index: 999;
-  padding-top: 60px;
+  transition: right 0.4s ease; /* الحركة الناعمة */
+  z-index: 9999;
+  padding: 20px;
 }
 
 .sidebar ul {
