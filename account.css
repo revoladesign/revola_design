@@ -1,0 +1,47 @@
+body {
+  background-color: #451532;
+  font-family: 'Amiri', serif;
+  color: #D4D2C9;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.account-logo {
+  height: 40px;
+  cursor: pointer;
+}
+
+.account-profile {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.account-main h1 {
+  font-size: 2rem;
+  margin: 30px 0 20px;
+}
+
+.account-options button {
+  background-color: transparent;
+  border: 1px solid #D4D2C9;
+  color: #D4D2C9;
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.account-data {
+  margin-top: 30px;
+  font-size: 1.1rem;
+}
