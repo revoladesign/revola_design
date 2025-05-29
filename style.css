@@ -226,8 +226,8 @@ body {
 
 .about-video video {
   width: 100%;
-  max-width: 400px;
-  border-radius: 16%;
+  max-width: 420px;
+  border-radius: 15%;
   object-fit: cover;
 }
 
