@@ -32,3 +32,27 @@ function toggleSignup(btn) {
       });
   });
 </script>
+
+<script>
+window.addEventListener("scroll", () => {
+  const sections = document.querySelectorAll(".page-section");
+  let currentSection = null;
+
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+      currentSection = section;
+    }
+  });
+
+  if (currentSection) {
+    if (currentSection.classList.contains("section-dark")) {
+      document.body.style.backgroundColor = "#441431";
+      document.body.style.color = "#DCDDD1";
+    } else {
+      document.body.style.backgroundColor = "#B8ADAB";
+      document.body.style.color = "#441431";
+    }
+  }
+});
+</script>
