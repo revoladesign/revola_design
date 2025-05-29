@@ -218,13 +218,13 @@ body {
   line-height: 1.7;
 }
 
-.about-image {
+.about-video {
   width: 35%;
   display: flex;
   justify-content: center;
 }
 
-.about-image img {
+.about-video video {
   width: 100%;
   max-width: 400px;
   border-radius: 16%;
