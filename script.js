@@ -1,4 +1,18 @@
-  function openSignup() {
+document.addEventListener("DOMContentLoaded", function () {
+  const user = localStorage.getItem("revolaUser");
+  const signupBtn = document.querySelector(".signup-btn");
+  const profileIcon = document.getElementById("profileIcon");
+
+  if (user) {
+    signupBtn.style.display = "none";
+    profileIcon.style.display = "block";
+  } else {
+    signupBtn.style.display = "block";
+    profileIcon.style.display = "none";
+  }
+});
+
+    function openSignup() {
   document.getElementById("signup-modal").style.display = "flex";
 }
 
