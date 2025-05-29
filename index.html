@@ -123,22 +123,3 @@
     </form>
   </div>
 </section>
-
-<!-- سكربت EmailJS -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  emailjs.init("rca3U6MlSNyFC_AUv"); // مفتاحك العام
-
-  document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    emailjs.sendForm("service_1hghbqi", "template_i0tdm8f", this)
-      .then(function() {
-        alert("🎉 تم إرسال رسالتك بنجاح!");
-        document.getElementById("contact-form").reset();
-      }, function(error) {
-        alert("❌ حدث خطأ أثناء الإرسال.");
-        console.log(error);
-      });
-  });
-</script>
