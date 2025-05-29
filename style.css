@@ -70,6 +70,57 @@ body {
   cursor: pointer;
 }
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #441431;
+  transition: right 0.3s ease;
+  z-index: 999;
+  padding-top: 60px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 12px 20px;
+}
+
+.sidebar a,
+.sidebar .signup-btn {
+  color: #DCDDD1;
+  font-family: 'Amiri', serif;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar .signup-btn {
+  background-color: #DCDDD1;
+  color: #441431;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px 20px;
+}
+
+.submenu {
+  display: none;
+  padding-left: 15px;
+}
+
+.has-submenu:hover .submenu {
+  display: block;
+}
+
 .main-section {
   display: flex;
   flex-wrap: wrap;
