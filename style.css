@@ -219,16 +219,13 @@ body {
 }
 
 .about-video {
-  width: 90%;
-  display: flex;
-  justify-content: center;
-}
-
-.about-video video {
-  width: 100%;
-  max-width: 420px;
-  border-radius: 15%;
-  object-fit: cover;
+  width: 90%;              /* العرض كنسبة من الصفحة */
+  max-width: 420px;        /* الحد الأقصى للعرض */
+  height: auto;            /* يخلي الارتفاع يتناسب تلقائي */
+  border-radius: 15%;      /* الحواف دائرية */
+  display: block;          /* يخلي الفيديو يظهر كسطر منفصل */
+  margin: 0 auto;          /* يوسّطه في الصفحة */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* ظل خفيف (اختياري) */
 }
 
 /* Responsive */
