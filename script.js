@@ -23,31 +23,7 @@ document.getElementById("signup-form").addEventListener("submit", function(e) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const menuBtn = document.getElementById('menu-btn');
-  const sideMenu = document.getElementById('side-menu');
-  const mainContent = document.getElementById('main-content');
 
-  // محتوى الصفحات
-  const pages = {
-    home: "<h1>Home</h1><p>أهلاً بك في الصفحة الرئيسية 🌸</p>",
-    about: "<h1>About Us</h1><p>هذه صفحة من نحن 💭</p>",
-    services: "<h1>Services</h1><p>هنا خدماتنا 🎨</p>",
-    portfolio: "<h1>Portfolio</h1><p>معرض أعمالنا هنا 🖼️</p>",
-    contact: "<h1>Contact</h1><p>تواصل معنا 💌</p>",
-    signup: "<h1>Sign Up</h1><p>نموذج التسجيل ✨</p>"
-  };
-
-  // عرض الصفحة عند الضغط على زر في القائمة
-  document.querySelectorAll('[data-page]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const page = e.target.getAttribute('data-page');
-      if (page && pages[page]) {
-        mainContent.innerHTML = pages[page];
-        sideMenu.classList.remove('active'); // إغلاق القائمة
-      }
-    });
   });
 
   // فتح القائمة عند الضغط على ☰
