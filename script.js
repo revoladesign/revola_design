@@ -28,35 +28,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const sideMenu = document.getElementById('side-menu');
   const mainContent = document.getElementById('main-content');
 
-  // محتوى كل صفحة كمثال (يمكنك تعديله أو جلبه ديناميكياً)
+  // محتوى الصفحات
   const pages = {
-    home: `<h1>Home</h1><p>مرحباً بك في الصفحة الرئيسية!</p>`,
-    about: `<h1>About Us</h1><p>هذه صفحة من نحن.</p>`,
-    services: `<h1>Services</h1><p>هذه صفحة الخدمات التي نقدمها.</p>`,
-    portfolio: `<h1>Portfolio</h1><p>هذا معرض الأعمال.</p>`,
-    contact: `<h1>Contact</h1><p>تواصل معنا من هنا.</p>`,
-    signup: `<h1>Sign Up</h1><p>قم بالتسجيل من هنا.</p>`
+    home: "<h1>Home</h1><p>أهلاً بك في الصفحة الرئيسية 🌸</p>",
+    about: "<h1>About Us</h1><p>هذه صفحة من نحن 💭</p>",
+    services: "<h1>Services</h1><p>هنا خدماتنا 🎨</p>",
+    portfolio: "<h1>Portfolio</h1><p>معرض أعمالنا هنا 🖼️</p>",
+    contact: "<h1>Contact</h1><p>تواصل معنا 💌</p>",
+    signup: "<h1>Sign Up</h1><p>نموذج التسجيل ✨</p>"
   };
 
-  // افتح وأغلق القائمة عند الضغط على الثلاث خطوط
+  // عرض الصفحة عند الضغط على زر في القائمة
+  document.querySelectorAll('[data-page]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const page = e.target.getAttribute('data-page');
+      if (page && pages[page]) {
+        mainContent.innerHTML = pages[page];
+        sideMenu.classList.remove('active'); // إغلاق القائمة
+      }
+    });
+  });
+
+  // فتح القائمة عند الضغط على ☰
   menuBtn.addEventListener('click', () => {
     sideMenu.classList.toggle('active');
   });
 
-  // التعامل مع الضغط على الروابط داخل القائمة
-  sideMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const page = link.getAttribute('data-page');
-      if (page && pages[page]) {
-        mainContent.innerHTML = pages[page];
-      }
-      sideMenu.classList.remove('active'); // أغلق القائمة بعد اختيار الصفحة
-    });
-  });
+  // زر الشعار يفتح الصفحة الرئيسية
+  window.goHome = () => {
+    mainContent.innerHTML = pages.home;
+  };
 
-  // افتح الصفحة الرئيسية بشكل افتراضي
-  mainContent.innerHTML = pages.home;
+  // عرض الصفحة الرئيسية تلقائياً أول مرة
+  goHome();
 });
 
     function openSignup() {
