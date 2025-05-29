@@ -1,4 +1,17 @@
 <script>
+  const menuIcon = document.querySelector('.menu-icon');
+  const sidebar = document.getElementById('sidebar');
+
+  menuIcon.addEventListener('click', () => {
+    if (sidebar.style.right === "0px") {
+      sidebar.style.right = "-250px";
+    } else {
+      sidebar.style.right = "0px";
+    }
+  });
+</script>
+
+<script>
     // To show the "Sign up" under Services
     document.querySelectorAll('li').forEach(item => {
         if (item.textContent === 'Service') {
