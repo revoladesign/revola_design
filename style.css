@@ -80,12 +80,16 @@ body {
 }
 
 .image-side img {
-  width: 90%;
+    width: 35%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-side img {
+  width: 100%;
   max-width: 400px;
-  height: auto;
-  border-radius: 15%;
-  display: block;
-  margin: 0 auto;
+  border-radius: 16%;
+  object-fit: cover;
 }
 
 .right-content {
