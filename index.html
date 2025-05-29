@@ -27,30 +27,29 @@
 
 <script src="script.js"></script>
 
-<!-- أيقونة القائمة -->
-<div class="menu-icon">☰</div>
-
-<!-- القائمة الجانبية --><!-- الشريط العلوي -->
+<!-- أيقونة القائمة --><!-- الشريط العلوي -->
 <header class="topbar">
-  <div class="logo">Rêvola Design</div>
-  <div id="menu-btn" class="menu-btn">☰</div> <!-- أيقونة الثلاث خطوط -->
+  <div class="logo" onclick="goHome()">RÊVOLA DESIGN</div>
+  <div class="menu-btn" id="menu-btn">☰</div>
 </header>
 
 <!-- القائمة الجانبية -->
-<nav id="side-menu" class="side-menu">
-  <div class="side-menu-content">
-    <div class="side-menu-logo">Rêvola Design</div>
-    <ul class="menu-list">
+<nav class="side-menu" id="side-menu">
+  <div class="menu-content">
+    <div class="menu-logo">RÊVOLA DESIGN</div>
+    <ul class="menu-links">
       <li><a href="#" data-page="home">Home</a></li>
       <li><a href="#" data-page="about">About us</a></li>
       <li><a href="#" data-page="services">Services</a></li>
       <li><a href="#" data-page="portfolio">Portfolio</a></li>
       <li><a href="#" data-page="contact">Contact</a></li>
     </ul>
-    <div class="signup-icon">
-      <a href="#" data-page="signup">Sign up</a>
-    </div>
+    <div class="signup-btn"><a href="#" data-page="signup">Sign up</a></div>
   </div>
+</nav>
+
+<!-- مكان ظهور الصفحات -->
+<main id="main-content"></main>
 </nav>
 
 <!-- المحتوى الرئيسي -->
