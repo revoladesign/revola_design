@@ -23,23 +23,22 @@ document.getElementById("signup-form").addEventListener("submit", function(e) {
   }
 });
 
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  sidebar.classList.toggle('show');
+  overlay.classList.toggle('show');
+}
 
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('show');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function goHome() {
+  window.location.href = "index.html";
+}
   });
-
-  // فتح القائمة عند الضغط على ☰
-  menuBtn.addEventListener('click', () => {
-    sideMenu.classList.toggle('active');
-  });
-
-  // زر الشعار يفتح الصفحة الرئيسية
-  window.goHome = () => {
-    mainContent.innerHTML = pages.home;
-  };
-
-  // عرض الصفحة الرئيسية تلقائياً أول مرة
-  goHome();
-});
-
     function openSignup() {
   document.getElementById("signup-modal").style.display = "flex";
 }
