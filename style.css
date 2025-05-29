@@ -70,55 +70,6 @@ body {
   cursor: pointer;
 }
 
-/* القائمة الجانبية Sidebar /* خطوط Amiri يمكنك تحميل الخط وربطه أو ربطه من Google
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar ul li {
-  padding: 12px 20px;
-}
-
-.sidebar a,
-.sidebar .signup-btn {
-  color: #DCDDD1;
-  font-family: 'Amiri', serif;
-  text-decoration: none;
-  display: block;
-}
-
-.sidebar .signup-btn {
-  background-color: #DCDDD1;
-  color: #441431;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
-  margin: 10px 20px;
-}
-
-.submenu {
-  display: none;
-  padding-left: 15px;
-}
-
-.has-submenu:hover .submenu {
-  display: block;
-}
-
-.main-section {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px 20px;
-  background-color: #B8ADAB;
-}
 
 .image-side img {
     width: 35%;
