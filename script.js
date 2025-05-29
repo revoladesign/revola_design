@@ -1,16 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const user = localStorage.getItem("revolaUser");
-  const signupBtn = document.querySelector(".signup-btn");
-  const profileIcon = document.getElementById("profileIcon");
+document.getElementById("signup-form").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-  if (user) {
-    signupBtn.style.display = "none";
-    profileIcon.style.display = "block";
-  } else {
-    signupBtn.style.display = "block";
-    profileIcon.style.display = "none";
+  const fullName = this.querySelector('input[type="text"]').value;
+  const status = this.querySelector('select:nth-of-type(1)').value;
+  const wilaya = this.querySelector('select:nth-of-type(2)').value;
+  const phone = this.querySelector('input[type="tel"]').value;
+  const email = this.querySelector('input[type="email"]').value;
+
+  const user = { fullName, status, wilaya, phone, email };
+  localStorage.setItem("revolaUser", JSON.stringify(user));
+
+  closeSignup();
+
+  // تحديث الواجهة
+  document.querySelector(".signup-btn")?.style.display = "none";
+  document.getElementById("profileIcon").style.display = "block";
+
+  // تحديث زر Sign up في الصفحة الرئيسية إلى My account
+  const signupBtnHome = document.querySelector(".home-section .signup-btn");
+  if (signupBtnHome) {
+    signupBtnHome.outerHTML = `<button class="my-account-btn" onclick="openAccount()">My account</button>`;
   }
 });
+
 
     function openSignup() {
   document.getElementById("signup-modal").style.display = "flex";
