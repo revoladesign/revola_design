@@ -57,3 +57,16 @@ document.getElementById("signup-form").addEventListener("submit", function(e) {
     signupBtnHome.outerHTML = `<button class="my-account-btn" onclick="openAccount()">My account</button>`;
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.querySelector('.menu-icon');
+  const sidebar = document.getElementById('sidebar');
+
+  menuIcon.addEventListener('click', () => {
+    if (sidebar.style.right === "0px") {
+      sidebar.style.right = "-250px";
+    } else {
+      sidebar.style.right = "0px";
+    }
+  });
+});
