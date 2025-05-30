@@ -5,25 +5,11 @@ body {
   color: #441431;
 }
 
-.navbar {
-  background-color: #441431;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 20px;
-}
 
 .logo {
   height: 50px;
 }
 
-.navbar {
-  background-color: #441431;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-}
 
 .logo {
   height: 50px;
@@ -63,6 +49,11 @@ body {
   color: #DCDDD1;
   padding: 15px 20px;
   font-family: 'Amiri', serif;
+  position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 1000;
 }
 
 /* أيقونة القائمة */
