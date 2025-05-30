@@ -489,15 +489,3 @@ margin: 20px auto 0;
   cursor: pointer;
 }
 
-.navbar {
-  position: relative; /* أو fixed إذا حابة يثبت */
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #441431;
-  color: #DCDDD1;
-  padding: 15px 25px;
-}
