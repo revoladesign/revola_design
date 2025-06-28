@@ -1,177 +1,916 @@
-<!DOCTYPE html>
-<html lang="ar" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rêvola Design</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
-</head>
-
-<body>
-<header>
-  <div class="navbar">
-    <img src="revola-logo.png" alt="Logo" class="logo">
-    <span class="brand-title">RÊVOLA DESIGN</span>
-    <div class="nav-actions">
-     <!-- زر Sign up -->
-<button class="signup-btn" onclick="openSignup()">Sign up</button>
-
-<!-- صورة البروفايل (مخفية بالبداية) -->
-<img src="profile-icon.png" class="profile-icon" id="profileIcon" style="display: none;" onclick="openAccount()">
-      <header class="navbar">
-  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
-</header>
-
-     
-
-<!-- Home Section -->
-  </section>
-<section class="main-section">
-  <div class="image-side">
-  <img src="home.jpg" alt="Home Image">
-</div>
-  <div class="right-content">
-    <h1 class="main-title">RÊVOLA DESIGN</h1>
-    <p class="main-desc">كل ما تحتاجه من تصاميم احترافية بلمسة مميزة تجده هنا ..</p>
-    <button onclick="openSignup()">Sign up</button>
-    <p class="follow-text">Follow me</p>
-    <div class="social-icons">
-      <span>🌸</span>
-      <span>🌸</span>
-      <span>🌸</span>
-    </div>
-    <div id="signup-message" class="signup-reveal" style="display: none;">Sign up</div>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
-   </section>
-
-  <!-- About Section -->
-  </section>
-
-<section id="about" class="about-section">
-    <div class="about-text">
-      <h1>About us</h1>
-      <p>
-        “At Rêvola Design, we create beauty from simplicity!<br>
-        We’re a passionate team dedicated to designing presentations, posters, cards, and more — all with a modern touch.<br>
-        We believe that every small detail has the power to make a big impact.”
-      </p>
-    </div>
-    <div class="about-image">
-  <video class="about-video" autoplay muted loop playsinline>
-    <source src="about-video.mp4" type="video/mp4">
+I'll update the "تعرف علينا" button to scroll to the About Us section when clicked. This will give users another way to navigate to that section directly from the homepage.
+Now when you click on the "تعرف علينا" button in the main section, it will smoothly scroll to the About Us section. I've also added code to update the active menu item in the sidebar when this button is clicked, providing visual feedback about which section is currently active.```html
+    html {
+        scroll-behavior: smooth;
+    }
     
-  </video>
+    .tech-circle {
+        border-radius: 50%;
+        position: fixed;
+        opacity: 0.15;
+        background: linear-gradient(45deg, #4f46e5, #7e22ce);
+        animation: float 15s infinite ease-in-out;
+        z-index: -1;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0) translateX(0); }
+        25% { transform: translateY(-20px) translateX(10px); }
+        50% { transform: translateY(-10px) translateX(-10px); }
+        75% { transform: translateY(20px) translateX(5px); }
+    }
+    
+    .sidebar {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .modal {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    .modal.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .glow {
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+    }
+    
+    .btn-gradient {
+        background: linear-gradient(45deg, #4f46e5, #7e22ce);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #4338ca, #6d28d9);
+        transform: translateY(-2px);
+    }
+    
+    .gallery-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .gallery {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .gallery-item {
+        min-width: 100%;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .gallery-controls {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+    }
+    
+    .gallery-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .gallery-dot.active {
+        background-color: white;
+        transform: scale(1.2);
+    }
+    
+    .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+    
+    .gallery-arrow:hover {
+        background-color: rgba(79, 70, 229, 0.8);
+    }
+    
+    .gallery-arrow.prev {
+        left: 10px;
+    }
+    
+    .gallery-arrow.next {
+        right: 10px;
+    }
+    
+    /* LTR direction for login form */
+    .ltr-form {
+        direction: ltr;
+        text-align: left;
+    }
+    
+    /* Services section styling */
+    .services-section {
+        position: relative;
+    }
+    
+    .section-transition {
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(139, 92, 246, 0.5), transparent);
+        margin: 20px auto;
+        width: 80%;
+        max-width: 800px;
+    }
+    
+    /* Glass feature card styling */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .glass-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px;
+        padding: 2px;
+        background: linear-gradient(45deg, #4f46e5, #7e22ce, #3b82f6, #8b5cf6);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: borderAnimation 4s linear infinite;
+        background-size: 400% 400%;
+    }
+    
+    @keyframes borderAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* English text in feature cards */
+    .feature-title {
+        direction: ltr;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    /* Video container styling */
+    .video-container {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .video-glow {
+        position: relative;
+        border-radius: 16px;
+        animation: videoGlow 6s infinite alternate;
+    }
+    
+    @keyframes videoGlow {
+        0% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
+        50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.7); }
+        100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
+    }
+    
+    .video-placeholder {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        background-color: rgba(30, 27, 75, 0.8);
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+    
+    .video-placeholder::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
+    }
+    
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .play-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .play-button::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 15px 0 15px 25px;
+        border-color: transparent transparent transparent white;
+        margin-left: 5px;
+    }
+    
+    /* Contact card styling */
+    .contact-card {
+        background: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .contact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px;
+        padding: 2px;
+        background: linear-gradient(45deg, #4f46e5, #7e22ce, #3b82f6, #8b5cf6);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: borderAnimation 4s linear infinite;
+        background-size: 400% 400%;
+        z-index: 0;
+    }
+    
+    .form-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: white;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .form-input:focus {
+        outline: none;
+        border-color: rgba(139, 92, 246, 0.5);
+        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .char-counter {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: left;
+        margin-top: 4px;
+    }
+    
+    .send-button {
+        background: linear-gradient(45deg, #4f46e5, #7e22ce);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .send-button:hover {
+        background: linear-gradient(45deg, #4338ca, #6d28d9);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
+    .send-button:active {
+        transform: translateY(0);
+    }
+    
+    .send-icon {
+        transition: transform 0.3s ease;
+    }
+    
+    .send-button:hover .send-icon {
+        transform: translateX(4px);
+    }
+    
+    /* Active menu item */
+    .menu-item.active {
+        background-color: rgba(79, 70, 229, 0.5);
+        color: white;
+    }
+</style>
+<!-- Navbar (Reversed) -->
+<nav class="fixed w-full top-0 z-50 bg-opacity-80 backdrop-blur-md bg-gray-900 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <button id="menuBtn" class="p-2 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            <button id="signupBtn" class="btn-gradient px-5 py-2 rounded-full font-medium text-white glow">
+                SIGN UP
+            </button>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+            <span class="text-xl font-semibold tracking-wider text-white">RÊVOLA</span>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center">
+                <span class="text-white font-bold text-xl">R</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar Menu -->
+<div id="sidebar" class="sidebar fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-95 shadow-lg z-50 p-5">
+    <div class="flex justify-between items-center mb-10">
+        <h2 class="text-xl font-bold text-white">القائمة</h2>
+        <button id="closeMenu" class="text-white focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <ul class="space-y-4">
+        <li><a href="#home" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Home</a></li>
+        <li><a href="#portfolio" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Portfolio</a></li>
+        <li><a href="#services" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Services</a></li>
+        <li><a href="#features" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Features</a></li>
+        <li><a href="#about" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">About Us</a></li>
+        <li><a href="#contact" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Contact</a></li>
+    </ul>
 </div>
-  </section>
 
-  <script src="scroll.js"></script>
-</body>
-</html>
-
-<section id="portfolio" class="portfolio-section">
-  <h2 class="portfolio-title">Portfolio</h2>
-  <p class="portfolio-subtitle">A little gallery of what we love to do</p>
-<div class="portfolio-buttons">
-  <div class="circle-btn" onclick="toggleSignup(this)">Presentation</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Prints</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Cards</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Logos</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Diplômes</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Social media</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Videos</div>
-  <div class="circle-btn" onclick="toggleSignup(this)">Docs</div>
+<!-- Sign Up Modal (LTR direction) -->
+<div id="signupModal" class="modal fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="bg-gray-900 rounded-lg p-8 max-w-md w-full mx-4 border border-purple-500 glow">
+        <div class="flex justify-between items-center mb-6 ltr-form">
+            <h3 class="text-xl font-bold text-white">Sign In</h3>
+            <button id="closeModal" class="text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
+        <form class="space-y-6 ltr-form">
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                <input type="email" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter your email">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                <input type="password" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter your password">
+            </div>
+            <div class="flex items-center">
+                <input type="checkbox" id="remember" class="w-4 h-4 text-purple-600 bg-gray-800 border-gray-700 rounded focus:ring-purple-500">
+                <label for="remember" class="ml-2 text-sm text-gray-300">Remember me</label>
+            </div>
+            <div>
+                <button type="button" class="w-full btn-gradient py-2 px-4 rounded-md text-white font-medium">
+                    Sign In
+                </button>
+            </div>
+        </form>
+        
+        <div class="mt-4 text-center ltr-form">
+            <p class="text-sm text-gray-400">Don't have an account? <a href="#" class="text-purple-400 hover:text-purple-300">Create new account</a></p>
+        </div>
+    </div>
 </div>
-<div class="signup-message" style="display: none;">Sign up</div>
 
-  <div class="portfolio-cards">
-    <div class="portfolio-card">
-      <img src="poster1.jpg" alt="Poster 1">
-      <p>Presentation of a student</p>
+<!-- Main Content -->
+<main id="home" class="container mx-auto px-4 pt-24 pb-12 relative z-10">
+    <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            مرحباً بك في RÊVOLA
+        </h1>
+        <p class="text-lg text-gray-300 mb-8">
+            نحن نقدم حلول تقنية مبتكرة لتطوير أعمالك ومشاريعك بأحدث التقنيات
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button class="btn-gradient px-8 py-3 rounded-full font-medium text-white glow">
+                ابدأ الآن
+            </button>
+            <button id="aboutUsBtn" class="px-8 py-3 rounded-full font-medium text-white border border-purple-500 hover:bg-purple-900 hover:bg-opacity-30 transition duration-300">
+                تعرف علينا
+            </button>
+        </div>
+        
+        <!-- Image Gallery -->
+        <div id="portfolio" class="gallery-container mt-12 mb-16 max-w-4xl mx-auto">
+            <div class="gallery">
+                <!-- Gallery items with SVG tech illustrations -->
+                <div class="gallery-item flex items-center justify-center bg-gradient-to-r from-blue-900 to-indigo-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="text-white">
+                        <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5" />
+                        <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="2" />
+                        <path d="M100 50 L100 20" stroke="currentColor" stroke-width="2" />
+                        <path d="M100 150 L100 180" stroke="currentColor" stroke-width="2" />
+                        <path d="M50 100 L20 100" stroke="currentColor" stroke-width="2" />
+                        <path d="M150 100 L180 100" stroke="currentColor" stroke-width="2" />
+                        <text x="100" y="105" text-anchor="middle" fill="white" font-size="12">TECHNOLOGY</text>
+                    </svg>
+                </div>
+                <div class="gallery-item flex items-center justify-center bg-gradient-to-r from-purple-900 to-indigo-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="text-white">
+                        <rect x="40" y="60" width="120" height="80" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+                        <rect x="60" y="80" width="80" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="70" cy="70" r="5" fill="currentColor" />
+                        <circle cx="85" cy="70" r="5" fill="currentColor" />
+                        <circle cx="100" cy="70" r="5" fill="currentColor" />
+                        <path d="M40 140 L20 170" stroke="currentColor" stroke-width="2" />
+                        <path d="M160 140 L180 170" stroke="currentColor" stroke-width="2" />
+                        <text x="100" y="170" text-anchor="middle" fill="white" font-size="12">INNOVATION</text>
+                    </svg>
+                </div>
+                <div class="gallery-item flex items-center justify-center bg-gradient-to-r from-blue-800 to-purple-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="text-white">
+                        <path d="M100 30 L30 100 L100 170 L170 100 Z" fill="none" stroke="currentColor" stroke-width="2" />
+                        <path d="M100 50 L50 100 L100 150 L150 100 Z" fill="none" stroke="currentColor" stroke-width="2" />
+                        <path d="M100 70 L70 100 L100 130 L130 100 Z" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="100" cy="100" r="10" fill="currentColor" />
+                        <text x="100" y="180" text-anchor="middle" fill="white" font-size="12">SOLUTIONS</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="gallery-arrow prev">❮</div>
+            <div class="gallery-arrow next">❯</div>
+            
+            <div class="gallery-controls">
+                <div class="gallery-dot active"></div>
+                <div class="gallery-dot"></div>
+                <div class="gallery-dot"></div>
+            </div>
+        </div>
     </div>
-    <div class="portfolio-card">
-      <img src="poster2.jpg" alt="Poster 2">
-      <p>Certificate of participation by a media club</p>
+</main>
+
+<!-- Subtle Section Divider -->
+<div class="section-transition"></div>
+
+<!-- Services Section -->
+<section id="services" class="services-section py-20 relative z-10">
+    <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                RÊVOLA SERVICES
+            </h2>
+            <p class="text-lg text-gray-300 mb-10">
+                نقدم مجموعة متكاملة من الخدمات التقنية المبتكرة لمساعدة عملائنا على تحقيق أهدافهم وتطوير أعمالهم في العصر الرقمي
+            </p>
+            
+            <button class="btn-gradient px-10 py-4 rounded-full font-medium text-white text-lg uppercase tracking-wider glow transform transition hover:scale-105">
+                DISCOVER
+            </button>
+        </div>
     </div>
-    <div class="portfolio-card">
-      <img src="poster3.jpg" alt="Poster 3">
-      <p>Poster for a student specializing in nature and life sciences</p>
-    </div>
-  </div>
 </section>
 
-<section id="contact" class="contact-section">
-  <video class="contact-video" autoplay muted loop playsinline>
-  <source src="revola-contact.mp4" type="video/mp4">
-</video>
+<!-- Subtle Section Divider -->
+<div class="section-transition"></div>
 
-  <div class="contact-content">
-    <h2 class="contact-title">Contact</h2>
-
-    <!-- أضفنا الفورم هنا -->
-    <form id="contact-form">
-      <div class="form-group">
-        <label>Nom</label>
-        <input type="text" class="contact-input" name="user_name" required>
-      </div>
-
-      <div class="form-group">
-        <label>Gmail</label>
-        <input type="email" class="contact-input" name="user_email" required>
-      </div>
-
-      <div class="form-group">
-        <label>Message</label>
-        <textarea class="contact-textarea" name="message" required></textarea>
-      </div>
-
-      <button type="submit" class="send-btn">Send</button>
-    </form>
-  </div>
-  <form id="contact-form">
-  <input type="text" name="user_name" required>
-  <input type="email" name="user_email" required>
-  <textarea name="message" required></textarea>
-  <button type="submit">Send</button>
-</form>
+<!-- Features Section -->
+<section id="features" class="features-section py-20 relative z-10">
+    <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                RÊVOLA FEATURES
+            </h2>
+            <p class="text-lg text-gray-300">
+                اكتشف المميزات الفريدة التي تجعل منصتنا الخيار الأمثل لتطوير مشاريعك الرقمية
+            </p>
+        </div>
+        
+        <!-- Glass Feature Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <!-- Feature 1 -->
+            <div class="glass-card flex flex-col items-center">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="feature-title text-xl text-white">Fast Performance</h3>
+                <p class="text-gray-300 text-center text-sm">Optimized for speed</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="glass-card flex flex-col items-center">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <h3 class="feature-title text-xl text-white">Secure Platform</h3>
+                <p class="text-gray-300 text-center text-sm">Advanced security features</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="glass-card flex flex-col items-center">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                    </svg>
+                </div>
+                <h3 class="feature-title text-xl text-white">Responsive Design</h3>
+                <p class="text-gray-300 text-center text-sm">Works on all devices</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="glass-card flex flex-col items-center">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                </div>
+                <h3 class="feature-title text-xl text-white">24/7 Support</h3>
+                <p class="text-gray-300 text-center text-sm">Always here to help</p>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="glass-card flex flex-col items-center">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                    </svg>
+                </div>
+                <h3 class="feature-title text-xl text-white">Customizable</h3>
+                <p class="text-gray-300 text-center text-sm">Tailored to your needs</p>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- Subtle Section Divider -->
+<div class="section-transition"></div>
 
-<!-- نافذة Sign up -->
-<div id="signup-modal" class="signup-modal">
-  <div class="signup-content">
-    <span class="close-btn" onclick="closeSignup()">&times;</span>
-    <h2>Sign up</h2>
-    <form id="signup-form">
-      <input type="text" placeholder="Full name" required>
-      
-      <select required>
-        <option disabled selected>Current status</option>
-        <option>Étudiant</option>
-        <option>Mutif</option>
-      </select>
+<!-- About Us Section -->
+<section id="about" class="about-section py-20 relative z-10">
+    <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                ABOUT US
+            </h2>
+            <p class="text-lg text-gray-300 mb-10">
+                فريق ريفولا هو مجموعة من المبدعين والمطورين المتخصصين في مجال التكنولوجيا، نسعى دائماً لتقديم حلول مبتكرة ومتطورة تلبي احتياجات عملائنا وتساعدهم على تحقيق أهدافهم في العالم الرقمي
+            </p>
+        </div>
+        
+        <!-- Video Container with Glowing Effect -->
+        <div class="video-container video-glow">
+            <div class="video-placeholder">
+                <!-- Video placeholder with team imagery -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
+                    <rect width="800" height="450" fill="none" />
+                    
+                    <!-- Abstract team representation -->
+                    <g opacity="0.7">
+                        <circle cx="400" cy="225" r="100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
+                        <circle cx="400" cy="225" r="150" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                        
+                        <!-- Team member representations -->
+                        <circle cx="400" cy="150" r="25" fill="rgba(79, 70, 229, 0.4)" />
+                        <circle cx="330" cy="200" r="20" fill="rgba(139, 92, 246, 0.4)" />
+                        <circle cx="470" cy="200" r="20" fill="rgba(59, 130, 246, 0.4)" />
+                        <circle cx="350" cy="270" r="22" fill="rgba(99, 102, 241, 0.4)" />
+                        <circle cx="450" cy="270" r="22" fill="rgba(167, 139, 250, 0.4)" />
+                        
+                        <!-- Connecting lines -->
+                        <line x1="400" y1="150" x2="330" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                        <line x1="400" y1="150" x2="470" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                        <line x1="330" y1="200" x2="350" y2="270" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                        <line x1="470" y1="200" x2="450" y2="270" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                        <line x1="350" y1="270" x2="450" y2="270" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                        <line x1="330" y1="200" x2="470" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                        
+                        <!-- RÊVOLA text -->
+                        <text x="400" y="350" text-anchor="middle" fill="white" font-size="24" font-weight="bold">RÊVOLA TEAM</text>
+                    </g>
+                </svg>
+                
+                <!-- Play button -->
+                <div class="play-button"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
-      <select required>
-        <option disabled selected>Wilaya</option>
-        <!-- من 1 إلى 58 -->
-        <script>
-          for(let i=1;i<=58;i++){
-            document.write(`<option>${i}</option>`);
-          }
-        </script>
-      </select>
+<!-- Subtle Section Divider -->
+<div class="section-transition"></div>
 
-      <input type="tel" placeholder="Phone number" required>
-      <input type="email" placeholder="Email" required>
+<!-- Contact Section -->
+<section id="contact" class="contact-section py-20 relative z-10">
+    <div class="container mx-auto px-4">
+        <!-- Contact Card -->
+        <div class="contact-card">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                    CONTACT
+                </h2>
+                <p class="text-lg text-gray-300">
+                    نحن هنا للإجابة على استفساراتك، تواصل معنا وسنرد عليك في أقرب وقت ممكن
+                </p>
+            </div>
+            
+            <!-- Contact Form - LTR direction for better English alignment -->
+            <form id="contactForm" class="space-y-6 ltr-form">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                    <input type="text" id="fullName" class="form-input" placeholder="Enter your full name">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                    <input type="tel" id="phoneNumber" class="form-input" placeholder="Enter your phone number">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                    <textarea id="message" class="form-input h-32 resize-none" maxlength="100" placeholder="Write your message here (100 characters max)"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/100</div>
+                </div>
+                
+                <div class="flex justify-center mt-8">
+                    <button type="submit" class="send-button">
+                        <span>SEND</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 send-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-      <button type="submit" class="confirm-btn">Confirmation</button>
+<!-- Footer -->
+<footer class="py-8 text-center text-gray-400 text-sm">
+    <div class="container mx-auto px-4">
+        <p>© 2023 RÊVOLA. All rights reserved.</p>
+    </div>
+</footer>
 
-      <p class="google-login">أو سجل عبر Google</p>
-    </form>
-  </div>
-</div>
+<script>
+    // Menu functionality
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const sidebar = document.getElementById('sidebar');
+    const menuItems = document.querySelectorAll('.menu-item');
+    
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.add('open');
+    });
+    
+    closeMenu.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+    });
+    
+    // Close sidebar when clicking a menu item
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            
+            // Update active menu item
+            menuItems.forEach(menuItem => {
+                menuItem.classList.remove('active');
+            });
+            item.classList.add('active');
+        });
+    });
+    
+    // Modal functionality
+    const signupBtn = document.getElementById('signupBtn');
+    const closeModal = document.getElementById('closeModal');
+    const signupModal = document.getElementById('signupModal');
+    
+    signupBtn.addEventListener('click', () => {
+        signupModal.classList.add('open');
+    });
+    
+    closeModal.addEventListener('click', () => {
+        signupModal.classList.remove('open');
+    });
+    
+    // Close modal when clicking outside
+    signupModal.addEventListener('click', (e) => {
+        if (e.target === signupModal) {
+            signupModal.classList.remove('open');
+        }
+    });
+    
+    // Gallery functionality
+    const gallery = document.querySelector('.gallery');
+    const dots = document.querySelectorAll('.gallery-dot');
+    const prevBtn = document.querySelector('.gallery-arrow.prev');
+    const nextBtn = document.querySelector('.gallery-arrow.next');
+    let currentSlide = 0;
+    const totalSlides = dots.length;
+    
+    function goToSlide(slideIndex) {
+        if (slideIndex < 0) {
+            slideIndex = totalSlides - 1;
+        } else if (slideIndex >= totalSlides) {
+            slideIndex = 0;
+        }
+        
+        gallery.style.transform = `translateX(-${slideIndex * 100}%)`;
+        currentSlide = slideIndex;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    // Add event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+        });
+    });
+    
+    // Add event listeners for arrows
+    prevBtn.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+    });
+    
+    // Auto slide every 5 seconds
+    setInterval(() => {
+        goToSlide(currentSlide + 1);
+    }, 5000);
+    
+    // Video play button functionality
+    const playButton = document.querySelector('.play-button');
+    playButton.addEventListener('click', () => {
+        alert('Video playback would start here in a real implementation.');
+    });
+    
+    // Character counter for message field
+    const messageField = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    
+    messageField.addEventListener('input', () => {
+        const currentLength = messageField.value.length;
+        charCount.textContent = currentLength;
+        
+        // Change color when approaching limit
+        if (currentLength >= 80) {
+            charCount.style.color = 'rgba(239, 68, 68, 0.8)'; // Red when close to limit
+        } else if (currentLength >= 50) {
+            charCount.style.color = 'rgba(245, 158, 11, 0.8)'; // Orange when halfway
+        } else {
+            charCount.style.color = 'rgba(255, 255, 255, 0.6)'; // Default color
+        }
+    });
+    
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const fullName = document.getElementById('fullName').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const message = messageField.value;
+        
+        // Simple validation
+        if (!fullName || !phoneNumber || !message) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        
+        // In a real implementation, you would send this data to a server
+        alert('Thank you for your message! We will get back to you soon.');
+        contactForm.reset();
+        charCount.textContent = '0';
+        charCount.style.color = 'rgba(255, 255, 255, 0.6)';
+    });
+    
+    // Set active menu item based on scroll position
+    function setActiveMenuItemOnScroll() {
+        const sections = document.querySelectorAll('section, main');
+        const scrollPosition = window.scrollY + 100; // Offset for better detection
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${sectionId}`) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', setActiveMenuItemOnScroll);
+    
+    // Initial call to set active menu item
+    setActiveMenuItemOnScroll();
+    
+    // About Us button functionality - scroll to About Us section
+    const aboutUsBtn = document.getElementById('aboutUsBtn');
+    aboutUsBtn.addEventListener('click', () => {
+        const aboutSection = document.getElementById('about');
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Update active menu item
+        menuItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === '#about') {
+                item.classList.add('active');
+            }
+        });
+    });
+</script
 
