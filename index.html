@@ -1,25 +1,137 @@
-I'll update the "تعرف علينا" button to scroll to the About Us section when clicked. This will give users another way to navigate to that section directly from the homepage.
-Now when you click on the "تعرف علينا" button in the main section, it will smoothly scroll to the About Us section. I've also added code to update the active menu item in the sidebar when this button is clicked, providing visual feedback about which section is currently active.```html
-    html {
-        scroll-behavior: smooth;
+ :root {
+        --primary-color: #17827D;
+        --secondary-color: #0A2342;
+        --accent-color: #4CB9E7;
+        --tech-color-1: #6B48FF;
+        --tech-color-2: #1AEBB6;
+        --gradient-end: #8FE0FF;
     }
     
-    .tech-circle {
-        border-radius: 50%;
+    body {
+        font-family: 'Tajawal', sans-serif;
+        background-color: #f0f9f8;
+        overflow-x: hidden;
+    }
+    
+    .bg-primary {
+        background-color: var(--primary-color);
+    }
+    
+    .text-primary {
+        color: var(--primary-color);
+    }
+    
+    .border-primary {
+        border-color: var(--primary-color);
+    }
+    
+    .bg-secondary {
+        background-color: var(--secondary-color);
+    }
+    
+    .bg-accent {
+        background-color: var(--accent-color);
+    }
+    
+    .bg-gradient {
+        background: linear-gradient(to left, var(--primary-color), var(--gradient-end));
+    }
+    
+    /* Animated background elements */
+    .animated-bg {
         position: fixed;
-        opacity: 0.15;
-        background: linear-gradient(45deg, #4f46e5, #7e22ce);
-        animation: float 15s infinite ease-in-out;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
+        overflow: hidden;
+    }
+    
+    .media-element {
+        position: absolute;
+        opacity: 0.15;
+        filter: blur(2px);
+        animation: float 15s infinite ease-in-out;
+    }
+    
+    .microphone {
+        width: 120px;
+        height: 120px;
+        top: 15%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+    
+    .film-strip {
+        width: 200px;
+        height: 80px;
+        top: 60%;
+        left: 70%;
+        animation-delay: 2s;
+    }
+    
+    .camera {
+        width: 100px;
+        height: 100px;
+        top: 30%;
+        left: 80%;
+        animation-delay: 4s;
+    }
+    
+    .editing-tool {
+        width: 150px;
+        height: 150px;
+        top: 70%;
+        left: 20%;
+        animation-delay: 6s;
     }
     
     @keyframes float {
-        0%, 100% { transform: translateY(0) translateX(0); }
-        25% { transform: translateY(-20px) translateX(10px); }
-        50% { transform: translateY(-10px) translateX(-10px); }
-        75% { transform: translateY(20px) translateX(5px); }
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+            transform: translate(30px, -50px) rotate(5deg);
+        }
+        66% {
+            transform: translate(-20px, 20px) rotate(-5deg);
+        }
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
     
+    /* Video container styling */
+    .video-container {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(23, 130, 125, 0.3), 
+                    0 0 20px rgba(76, 185, 231, 0.2),
+                    0 0 40px rgba(26, 235, 182, 0.1);
+    }
+    
+    .video-container::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--tech-color-1), var(--primary-color), var(--tech-color-2), var(--accent-color));
+        z-index: -1;
+        border-radius: 14px;
+        animation: glowing 3s linear infinite;
+    }
+    
+    @keyframes glowing {
+        0% { background-position: 0 0; }
+        50% { background-position: 400% 0; }
+        100% { background-position: 0 0; }
+    }
+    
+    /* Sidebar styling */
     .sidebar {
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
@@ -29,713 +141,430 @@ Now when you click on the "تعرف علينا" button in the main section, it w
         transform: translateX(0);
     }
     
-    .modal {
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-    
-    .modal.open {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    
-    .glow {
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
-    }
-    
-    .btn-gradient {
-        background: linear-gradient(45deg, #4f46e5, #7e22ce);
+    /* Social media icons */
+    .social-icon {
         transition: all 0.3s ease;
     }
     
-    .btn-gradient:hover {
-        background: linear-gradient(45deg, #4338ca, #6d28d9);
-        transform: translateY(-2px);
+    .social-icon:hover {
+        transform: translateY(-5px);
     }
     
-    .gallery-container {
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    .facebook:hover {
+        color: #1877F2;
     }
     
-    .gallery {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
+    .instagram:hover {
+        color: #E4405F;
     }
     
-    .gallery-item {
-        min-width: 100%;
-        height: 300px;
-        background-size: cover;
-        background-position: center;
+    .tiktok:hover {
+        color: #000000;
     }
     
-    .gallery-controls {
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
+    /* Rotating logo */
+    .rotating-logo {
+        animation: rotate 10s linear infinite;
     }
     
-    .gallery-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-        transition: all 0.3s ease;
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
     
-    .gallery-dot.active {
-        background-color: white;
-        transform: scale(1.2);
-    }
-    
-    .gallery-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: white;
-        font-size: 20px;
-        z-index: 10;
-        transition: all 0.3s ease;
-    }
-    
-    .gallery-arrow:hover {
-        background-color: rgba(79, 70, 229, 0.8);
-    }
-    
-    .gallery-arrow.prev {
-        left: 10px;
-    }
-    
-    .gallery-arrow.next {
-        right: 10px;
-    }
-    
-    /* LTR direction for login form */
-    .ltr-form {
-        direction: ltr;
-        text-align: left;
-    }
-    
-    /* Services section styling */
-    .services-section {
-        position: relative;
-    }
-    
-    .section-transition {
-        height: 2px;
-        background: linear-gradient(to right, transparent, rgba(139, 92, 246, 0.5), transparent);
-        margin: 20px auto;
-        width: 80%;
-        max-width: 800px;
-    }
-    
-    /* Glass feature card styling */
+    /* Glass card effect */
     .glass-card {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(10px);
-        border-radius: 16px;
-        padding: 24px;
-        position: relative;
-        overflow: hidden;
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     }
     
     .glass-card:hover {
         transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 40px rgba(23, 130, 125, 0.2);
     }
     
-    .glass-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 16px;
-        padding: 2px;
-        background: linear-gradient(45deg, #4f46e5, #7e22ce, #3b82f6, #8b5cf6);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        animation: borderAnimation 4s linear infinite;
-        background-size: 400% 400%;
-    }
-    
-    @keyframes borderAnimation {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    
-    .feature-icon {
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-    }
-    
-    /* English text in feature cards */
-    .feature-title {
-        direction: ltr;
-        text-align: center;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-    
-    /* Video container styling */
-    .video-container {
+    /* Gallery styling */
+    .gallery-container {
         position: relative;
-        border-radius: 16px;
-        overflow: hidden;
         max-width: 800px;
         margin: 0 auto;
-    }
-    
-    .video-glow {
-        position: relative;
-        border-radius: 16px;
-        animation: videoGlow 6s infinite alternate;
-    }
-    
-    @keyframes videoGlow {
-        0% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
-        50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.7); }
-        100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
-    }
-    
-    .video-placeholder {
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        background-color: rgba(30, 27, 75, 0.8);
-        position: relative;
-        border-radius: 16px;
         overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(23, 130, 125, 0.3);
     }
     
-    .video-placeholder::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
+    .gallery-slide {
+        display: none;
+        animation: fade 1.5s;
     }
     
-    .play-button {
+    .gallery-slide.active {
+        display: block;
+    }
+    
+    @keyframes fade {
+        from {opacity: 0.4}
+        to {opacity: 1}
+    }
+    
+    .gallery-nav {
         position: absolute;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80px;
-        height: 80px;
-        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-50%);
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        user-select: none;
+        background-color: rgba(23, 130, 125, 0.6);
         cursor: pointer;
-        transition: all 0.3s ease;
     }
     
-    .play-button:hover {
-        background: rgba(255, 255, 255, 0.3);
-        transform: translate(-50%, -50%) scale(1.1);
+    .gallery-nav:hover {
+        background-color: rgba(23, 130, 125, 0.9);
     }
     
-    .play-button::after {
-        content: '';
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 15px 0 15px 25px;
-        border-color: transparent transparent transparent white;
-        margin-left: 5px;
+    .gallery-prev {
+        right: 10px;
     }
     
-    /* Contact card styling */
-    .contact-card {
-        background: rgba(255, 255, 255, 0.07);
-        backdrop-filter: blur(12px);
-        border-radius: 20px;
-        padding: 40px;
-        max-width: 600px;
-        margin: 0 auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        position: relative;
-        overflow: hidden;
+    .gallery-next {
+        left: 10px;
     }
     
-    .contact-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 20px;
-        padding: 2px;
-        background: linear-gradient(45deg, #4f46e5, #7e22ce, #3b82f6, #8b5cf6);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        animation: borderAnimation 4s linear infinite;
-        background-size: 400% 400%;
-        z-index: 0;
+    .gallery-dots {
+        text-align: center;
+        margin-top: 20px;
     }
     
-    .form-input {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 12px 16px;
-        color: white;
-        width: 100%;
-        transition: all 0.3s ease;
-    }
-    
-    .form-input:focus {
-        outline: none;
-        border-color: rgba(139, 92, 246, 0.5);
-        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
-        background: rgba(255, 255, 255, 0.15);
-    }
-    
-    .form-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .char-counter {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
-        text-align: left;
-        margin-top: 4px;
-    }
-    
-    .send-button {
-        background: linear-gradient(45deg, #4f46e5, #7e22ce);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 12px 24px;
-        font-weight: 600;
+    .gallery-dot {
         cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
     }
     
-    .send-button:hover {
-        background: linear-gradient(45deg, #4338ca, #6d28d9);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-    }
-    
-    .send-button:active {
-        transform: translateY(0);
-    }
-    
-    .send-icon {
-        transition: transform 0.3s ease;
-    }
-    
-    .send-button:hover .send-icon {
-        transform: translateX(4px);
-    }
-    
-    /* Active menu item */
-    .menu-item.active {
-        background-color: rgba(79, 70, 229, 0.5);
-        color: white;
+    .gallery-dot.active, .gallery-dot:hover {
+        background-color: var(--primary-color);
     }
 </style>
-<!-- Navbar (Reversed) -->
-<nav class="fixed w-full top-0 z-50 bg-opacity-80 backdrop-blur-md bg-gray-900 shadow-lg">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-            <button id="menuBtn" class="p-2 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-            <button id="signupBtn" class="btn-gradient px-5 py-2 rounded-full font-medium text-white glow">
-                SIGN UP
-            </button>
-        </div>
-        
-        <div class="flex items-center space-x-2">
-            <span class="text-xl font-semibold tracking-wider text-white">RÊVOLA</span>
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center">
-                <span class="text-white font-bold text-xl">R</span>
+    <!-- Film Strip -->
+    <div class="media-element film-strip">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor" class="w-full h-full text-tech-color-1">
+            <path d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+        </svg>
+    </div>
+    
+    <!-- Camera -->
+    <div class="media-element camera">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full text-accent">
+            <path d="M12 9a3.75 3.75 0 1 0 0 7.5A3.75 3.75 0 0 0 12 9Z" />
+            <path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 0 1 5.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 0 0 1.11-.71l.822-1.315a2.942 2.942 0 0 1 2.332-1.39ZM6.75 12.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Zm12-1.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z" clip-rule="evenodd" />
+        </svg>
+    </div>
+    
+    <!-- Editing Tool -->
+    <div class="media-element editing-tool">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full text-tech-color-2">
+            <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+        </svg>
+    </div>
+</div>
+
+<!-- Navigation Bar with Gradient -->
+<nav class="bg-gradient shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <!-- Left side buttons -->
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <button id="menuToggle" class="p-2 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <button class="bg-white hover:bg-opacity-90 text-primary px-4 py-2 rounded-lg transition duration-300">
+                    انضم إلينا
+                </button>
+            </div>
+            
+            <!-- Brand on the left -->
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <span class="text-xl font-bold text-white">TMCC</span>
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary font-bold">
+                    <!-- Logo placeholder - replace with actual logo -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
 </nav>
 
-<!-- Sidebar Menu -->
-<div id="sidebar" class="sidebar fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-95 shadow-lg z-50 p-5">
-    <div class="flex justify-between items-center mb-10">
-        <h2 class="text-xl font-bold text-white">القائمة</h2>
-        <button id="closeMenu" class="text-white focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<!-- Sidebar Menu (Now on the right side) -->
+<div id="sidebar" class="sidebar fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-5">
+    <div class="flex justify-between items-center mb-8">
+        <h2 class="text-xl font-bold text-primary">القائمة</h2>
+        <button id="closeMenu" class="p-2 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
     </div>
     <ul class="space-y-4">
-        <li><a href="#home" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Home</a></li>
-        <li><a href="#portfolio" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Portfolio</a></li>
-        <li><a href="#services" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Services</a></li>
-        <li><a href="#features" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Features</a></li>
-        <li><a href="#about" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">About Us</a></li>
-        <li><a href="#contact" class="menu-item block py-2 px-4 text-white hover:bg-indigo-700 rounded transition duration-200">Contact</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-primary font-medium">الصفحة الرئيسية</a></li>
+        <li><a href="#about" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">من نحن</a></li>
+        <li><a href="#activities" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">أنشطتنا</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">مواهبنا</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">فريقنا</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">انضم إلينا</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">معرض الوسائط</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">مدونة النادي</a></li>
+        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-md text-gray-700">تواصل معنا</a></li>
     </ul>
 </div>
 
-<!-- Sign Up Modal (LTR direction) -->
-<div id="signupModal" class="modal fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-    <div class="bg-gray-900 rounded-lg p-8 max-w-md w-full mx-4 border border-purple-500 glow">
-        <div class="flex justify-between items-center mb-6 ltr-form">
-            <h3 class="text-xl font-bold text-white">Sign In</h3>
-            <button id="closeModal" class="text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        
-        <form class="space-y-6 ltr-form">
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                <input type="email" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter your email">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
-                <input type="password" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter your password">
-            </div>
-            <div class="flex items-center">
-                <input type="checkbox" id="remember" class="w-4 h-4 text-purple-600 bg-gray-800 border-gray-700 rounded focus:ring-purple-500">
-                <label for="remember" class="ml-2 text-sm text-gray-300">Remember me</label>
-            </div>
-            <div>
-                <button type="button" class="w-full btn-gradient py-2 px-4 rounded-md text-white font-medium">
-                    Sign In
-                </button>
-            </div>
-        </form>
-        
-        <div class="mt-4 text-center ltr-form">
-            <p class="text-sm text-gray-400">Don't have an account? <a href="#" class="text-purple-400 hover:text-purple-300">Create new account</a></p>
-        </div>
-    </div>
-</div>
-
 <!-- Main Content -->
-<main id="home" class="container mx-auto px-4 pt-24 pb-12 relative z-10">
-    <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            مرحباً بك في RÊVOLA
-        </h1>
-        <p class="text-lg text-gray-300 mb-8">
-            نحن نقدم حلول تقنية مبتكرة لتطوير أعمالك ومشاريعك بأحدث التقنيات
+<main class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-primary mb-4">مرحباً بك في نادي مواهب الإعلام والثقافة TMCC</h1>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            نادي مواهب الإعلام والثقافة هو منصة إبداعية تجمع المواهب الشابة في مجالات الإعلام والثقافة والفنون، نسعى لتطوير المهارات وإثراء المحتوى الإعلامي والثقافي.
         </p>
-        <div class="flex flex-wrap justify-center gap-4 mb-12">
-            <button class="btn-gradient px-8 py-3 rounded-full font-medium text-white glow">
-                ابدأ الآن
-            </button>
-            <button id="aboutUsBtn" class="px-8 py-3 rounded-full font-medium text-white border border-purple-500 hover:bg-purple-900 hover:bg-opacity-30 transition duration-300">
-                تعرف علينا
-            </button>
-        </div>
-        
-        <!-- Image Gallery -->
-        <div id="portfolio" class="gallery-container mt-12 mb-16 max-w-4xl mx-auto">
-            <div class="gallery">
-                <!-- Gallery items with SVG tech illustrations -->
-                <div class="gallery-item flex items-center justify-center bg-gradient-to-r from-blue-900 to-indigo-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="text-white">
-                        <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="2" />
-                        <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5" />
-                        <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="2" />
-                        <path d="M100 50 L100 20" stroke="currentColor" stroke-width="2" />
-                        <path d="M100 150 L100 180" stroke="currentColor" stroke-width="2" />
-                        <path d="M50 100 L20 100" stroke="currentColor" stroke-width="2" />
-                        <path d="M150 100 L180 100" stroke="currentColor" stroke-width="2" />
-                        <text x="100" y="105" text-anchor="middle" fill="white" font-size="12">TECHNOLOGY</text>
-                    </svg>
+    </div>
+
+    <!-- Video Section -->
+    <div class="max-w-4xl mx-auto mb-16">
+        <div class="video-container">
+            <div class="aspect-w-16 aspect-h-9">
+                <!-- Replace with actual video -->
+                <div class="w-full h-0 pb-[56.25%] relative">
+                    <div class="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                        <div class="text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-primary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <p class="mt-4 text-primary font-medium">فيديو تعريفي بالنادي</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-item flex items-center justify-center bg-gradient-to-r from-purple-900 to-indigo-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="text-white">
-                        <rect x="40" y="60" width="120" height="80" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
-                        <rect x="60" y="80" width="80" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
-                        <circle cx="70" cy="70" r="5" fill="currentColor" />
-                        <circle cx="85" cy="70" r="5" fill="currentColor" />
-                        <circle cx="100" cy="70" r="5" fill="currentColor" />
-                        <path d="M40 140 L20 170" stroke="currentColor" stroke-width="2" />
-                        <path d="M160 140 L180 170" stroke="currentColor" stroke-width="2" />
-                        <text x="100" y="170" text-anchor="middle" fill="white" font-size="12">INNOVATION</text>
-                    </svg>
-                </div>
-                <div class="gallery-item flex items-center justify-center bg-gradient-to-r from-blue-800 to-purple-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="text-white">
-                        <path d="M100 30 L30 100 L100 170 L170 100 Z" fill="none" stroke="currentColor" stroke-width="2" />
-                        <path d="M100 50 L50 100 L100 150 L150 100 Z" fill="none" stroke="currentColor" stroke-width="2" />
-                        <path d="M100 70 L70 100 L100 130 L130 100 Z" fill="none" stroke="currentColor" stroke-width="2" />
-                        <circle cx="100" cy="100" r="10" fill="currentColor" />
-                        <text x="100" y="180" text-anchor="middle" fill="white" font-size="12">SOLUTIONS</text>
-                    </svg>
-                </div>
-            </div>
-            
-            <div class="gallery-arrow prev">❮</div>
-            <div class="gallery-arrow next">❯</div>
-            
-            <div class="gallery-controls">
-                <div class="gallery-dot active"></div>
-                <div class="gallery-dot"></div>
-                <div class="gallery-dot"></div>
             </div>
         </div>
     </div>
+
+    <!-- Social Media Icons -->
+    <div class="flex justify-center space-x-8 space-x-reverse mb-20">
+        <a href="#" class="social-icon facebook text-gray-600 hover:text-blue-600 text-3xl">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="#" class="social-icon instagram text-gray-600 hover:text-pink-600 text-3xl">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-icon tiktok text-gray-600 hover:text-black text-3xl">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    </div>
+    
+    <!-- About Us Section -->
+    <section id="about" class="py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-primary mb-4">من نحن</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-10">
+                نادي مواهب الإعلام والثقافة هو مساحة إبداعية للطلاب المهتمين بمجالات الإعلام والثقافة. نهدف إلى تطوير مهارات الطلاب وصقل مواهبهم وتوفير بيئة محفزة للإبداع والتعبير.
+            </p>
+            
+            <!-- Rotating Logo -->
+            <div class="flex justify-center mb-10">
+                <div class="w-32 h-32 bg-primary rounded-full flex items-center justify-center text-white rotating-logo">
+                    <!-- Logo placeholder - replace with actual logo -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                </div>
+            </div>
+            
+            <p class="text-xl font-medium text-gray-700 mb-12">
+                يضم نادينا عدة أقسام تتيح لكل عضو أن يعبّر عن موهبته في المجال الذي يُحبّه، وهي:
+            </p>
+        </div>
+        
+        <!-- Departments Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Visual Media Department -->
+            <div class="glass-card rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                    <div class="text-4xl ml-4 text-primary">🎬</div>
+                    <h3 class="text-xl font-bold text-primary">قسم الإعلام المرئي</h3>
+                </div>
+                <div class="text-gray-700 space-y-2">
+                    <p>يهتم بالإخراج، التصوير، والمونتاج.</p>
+                    <p>ننتج فيديوهات قصيرة، تقارير، وتغطيات للأنشطة الجامعية.</p>
+                </div>
+            </div>
+            
+            <!-- Writing Department -->
+            <div class="glass-card rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                    <div class="text-4xl ml-4 text-primary">🖋️</div>
+                    <h3 class="text-xl font-bold text-primary">قسم التحرير والكتابة</h3>
+                </div>
+                <div class="text-gray-700 space-y-2">
+                    <p>منصة لكل من يحب الكتابة.</p>
+                    <p>نكتب مقالات، خواطر، تغطيات، ونصوص إعلامية تنقل أفكارنا وأصواتنا.</p>
+                </div>
+            </div>
+            
+            <!-- Audio Department -->
+            <div class="glass-card rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                    <div class="text-4xl ml-4 text-primary">🎙️</div>
+                    <h3 class="text-xl font-bold text-primary">قسم الصوتيات والبودكاست</h3>
+                </div>
+                <div class="text-gray-700 space-y-2">
+                    <p>لكل من لديه شغف بالتقديم الإذاعي والصوتي.</p>
+                    <p>نُعدّ حلقات بودكاست، تسجيلات صوتية، ومحتوى تعبيري مسموع.</p>
+                </div>
+            </div>
+            
+            <!-- Culture Department -->
+            <div class="glass-card rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                    <div class="text-4xl ml-4 text-primary">🎭</div>
+                    <h3 class="text-xl font-bold text-primary">قسم الثقافة والفنون</h3>
+                </div>
+                <div class="text-gray-700 space-y-2">
+                    <p>نعمل على تنظيم فعاليات ومسابقات ثقافية، بالإضافة إلى دعم المواهب في الرسم، المسرح، والخط العربي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Activities Section -->
+    <section id="activities" class="py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-primary mb-4">أنشطتنا</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-10">
+                نقدم مجموعة متنوعة من الأنشطة والفعاليات التي تهدف إلى تطوير مهارات أعضائنا وإثراء المحتوى الإعلامي والثقافي في الجامعة والمجتمع.
+            </p>
+        </div>
+        
+        <!-- Gallery -->
+        <div class="gallery-container">
+            <!-- Gallery Slides -->
+            <div class="gallery-slide active">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzE3ODI3RCIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmB2LnYp9mE2YrYqSDYp9mE2YbYp9iv2Yo8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzRDQjlFNyIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmI2LHYtNipINi52YXZhPC90ZXh0Pjwvc3ZnPg==" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzZCNDhGRiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2LPYp9io2YLYqSDYq9mC2KfZgdmK2Kk8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzFBRUJCNiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2LnYsdirINin2YTZgdmG2YjZhiDZiNin2YTYrti3PC90ZXh0Pjwvc3ZnPg==" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzBBMjM0MiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2YXZiNin2YfYqDwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzE3ODI3RCIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2LnYsdirINin2YTYtdmI2LE8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzRDQjlFNyIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2YPYqtin2KjYqTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzZCNDhGRiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2YXYs9ix2K08L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzFBRUJCNiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmI2LHYtNipINin2YTYrti3INin2YTYudix2KjZijwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzBBMjM0MiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2LPYp9io2YLYqSDYp9mE2KXZhNmC2KfYoTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzE3ODI3RCIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KXYsNin2LnYqTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzRDQjlFNyIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2YHZhtmI2YY8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzZCNDhGRiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KrYtdmI2YrYsTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzFBRUJCNiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KjZiNiv2YPYp9iz2Ko8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzBBMjM0MiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2LnYsdirINin2YTZhdmI2KfZh9ioINin2YTYtNin2KjYqTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzE3ODI3RCIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KrYtdmF2YrZhTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzRDQjlFNyIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KrYrdix2YrYsTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzZCNDhGRiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KXYudmE2KfZhTwvdGV4dD48L3N2Zz4=" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzFBRUJCNiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KrYtdmI2YrYsSDYp9mE2LbZiNim2Yo8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            <div class="gallery-slide">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzBBMjM0MiIvPjx0ZXh0IHg9IjQwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPtmF2YfYsdis2KfZhiDYp9mE2KrYtdmF2YrZhSDYp9mE2LXZiNiq2Yo8L3RleHQ+PC9zdmc+" alt="نشاط النادي" class="w-full">
+            </div>
+            
+            <!-- Gallery Navigation -->
+            <a class="gallery-nav gallery-prev" onclick="changeSlide(-1)">❮</a>
+            <a class="gallery-nav gallery-next" onclick="changeSlide(1)">❯</a>
+        </div>
+        
+        <!-- Gallery Dots -->
+        <div class="gallery-dots">
+            <span class="gallery-dot active" onclick="currentSlide(1)"></span>
+            <span class="gallery-dot" onclick="currentSlide(2)"></span>
+            <span class="gallery-dot" onclick="currentSlide(3)"></span>
+            <span class="gallery-dot" onclick="currentSlide(4)"></span>
+            <span class="gallery-dot" onclick="currentSlide(5)"></span>
+            <span class="gallery-dot" onclick="currentSlide(6)"></span>
+            <span class="gallery-dot" onclick="currentSlide(7)"></span>
+            <span class="gallery-dot" onclick="currentSlide(8)"></span>
+            <span class="gallery-dot" onclick="currentSlide(9)"></span>
+            <span class="gallery-dot" onclick="currentSlide(10)"></span>
+            <span class="gallery-dot" onclick="currentSlide(11)"></span>
+            <span class="gallery-dot" onclick="currentSlide(12)"></span>
+            <span class="gallery-dot" onclick="currentSlide(13)"></span>
+            <span class="gallery-dot" onclick="currentSlide(14)"></span>
+            <span class="gallery-dot" onclick="currentSlide(15)"></span>
+            <span class="gallery-dot" onclick="currentSlide(16)"></span>
+            <span class="gallery-dot" onclick="currentSlide(17)"></span>
+            <span class="gallery-dot" onclick="currentSlide(18)"></span>
+            <span class="gallery-dot" onclick="currentSlide(19)"></span>
+            <span class="gallery-dot" onclick="currentSlide(20)"></span>
+        </div>
+    </section>
 </main>
 
-<!-- Subtle Section Divider -->
-<div class="section-transition"></div>
-
-<!-- Services Section -->
-<section id="services" class="services-section py-20 relative z-10">
-    <div class="container mx-auto px-4">
-        <div class="text-center max-w-3xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                RÊVOLA SERVICES
-            </h2>
-            <p class="text-lg text-gray-300 mb-10">
-                نقدم مجموعة متكاملة من الخدمات التقنية المبتكرة لمساعدة عملائنا على تحقيق أهدافهم وتطوير أعمالهم في العصر الرقمي
-            </p>
-            
-            <button class="btn-gradient px-10 py-4 rounded-full font-medium text-white text-lg uppercase tracking-wider glow transform transition hover:scale-105">
-                DISCOVER
-            </button>
-        </div>
-    </div>
-</section>
-
-<!-- Subtle Section Divider -->
-<div class="section-transition"></div>
-
-<!-- Features Section -->
-<section id="features" class="features-section py-20 relative z-10">
-    <div class="container mx-auto px-4">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                RÊVOLA FEATURES
-            </h2>
-            <p class="text-lg text-gray-300">
-                اكتشف المميزات الفريدة التي تجعل منصتنا الخيار الأمثل لتطوير مشاريعك الرقمية
-            </p>
-        </div>
-        
-        <!-- Glass Feature Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            <!-- Feature 1 -->
-            <div class="glass-card flex flex-col items-center">
-                <div class="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
-                <h3 class="feature-title text-xl text-white">Fast Performance</h3>
-                <p class="text-gray-300 text-center text-sm">Optimized for speed</p>
-            </div>
-            
-            <!-- Feature 2 -->
-            <div class="glass-card flex flex-col items-center">
-                <div class="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </div>
-                <h3 class="feature-title text-xl text-white">Secure Platform</h3>
-                <p class="text-gray-300 text-center text-sm">Advanced security features</p>
-            </div>
-            
-            <!-- Feature 3 -->
-            <div class="glass-card flex flex-col items-center">
-                <div class="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                    </svg>
-                </div>
-                <h3 class="feature-title text-xl text-white">Responsive Design</h3>
-                <p class="text-gray-300 text-center text-sm">Works on all devices</p>
-            </div>
-            
-            <!-- Feature 4 -->
-            <div class="glass-card flex flex-col items-center">
-                <div class="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                </div>
-                <h3 class="feature-title text-xl text-white">24/7 Support</h3>
-                <p class="text-gray-300 text-center text-sm">Always here to help</p>
-            </div>
-            
-            <!-- Feature 5 -->
-            <div class="glass-card flex flex-col items-center">
-                <div class="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-                    </svg>
-                </div>
-                <h3 class="feature-title text-xl text-white">Customizable</h3>
-                <p class="text-gray-300 text-center text-sm">Tailored to your needs</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Subtle Section Divider -->
-<div class="section-transition"></div>
-
-<!-- About Us Section -->
-<section id="about" class="about-section py-20 relative z-10">
-    <div class="container mx-auto px-4">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                ABOUT US
-            </h2>
-            <p class="text-lg text-gray-300 mb-10">
-                فريق ريفولا هو مجموعة من المبدعين والمطورين المتخصصين في مجال التكنولوجيا، نسعى دائماً لتقديم حلول مبتكرة ومتطورة تلبي احتياجات عملائنا وتساعدهم على تحقيق أهدافهم في العالم الرقمي
-            </p>
-        </div>
-        
-        <!-- Video Container with Glowing Effect -->
-        <div class="video-container video-glow">
-            <div class="video-placeholder">
-                <!-- Video placeholder with team imagery -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
-                    <rect width="800" height="450" fill="none" />
-                    
-                    <!-- Abstract team representation -->
-                    <g opacity="0.7">
-                        <circle cx="400" cy="225" r="100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
-                        <circle cx="400" cy="225" r="150" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                        
-                        <!-- Team member representations -->
-                        <circle cx="400" cy="150" r="25" fill="rgba(79, 70, 229, 0.4)" />
-                        <circle cx="330" cy="200" r="20" fill="rgba(139, 92, 246, 0.4)" />
-                        <circle cx="470" cy="200" r="20" fill="rgba(59, 130, 246, 0.4)" />
-                        <circle cx="350" cy="270" r="22" fill="rgba(99, 102, 241, 0.4)" />
-                        <circle cx="450" cy="270" r="22" fill="rgba(167, 139, 250, 0.4)" />
-                        
-                        <!-- Connecting lines -->
-                        <line x1="400" y1="150" x2="330" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        <line x1="400" y1="150" x2="470" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        <line x1="330" y1="200" x2="350" y2="270" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        <line x1="470" y1="200" x2="450" y2="270" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        <line x1="350" y1="270" x2="450" y2="270" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        <line x1="330" y1="200" x2="470" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        
-                        <!-- RÊVOLA text -->
-                        <text x="400" y="350" text-anchor="middle" fill="white" font-size="24" font-weight="bold">RÊVOLA TEAM</text>
-                    </g>
-                </svg>
-                
-                <!-- Play button -->
-                <div class="play-button"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Subtle Section Divider -->
-<div class="section-transition"></div>
-
-<!-- Contact Section -->
-<section id="contact" class="contact-section py-20 relative z-10">
-    <div class="container mx-auto px-4">
-        <!-- Contact Card -->
-        <div class="contact-card">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                    CONTACT
-                </h2>
-                <p class="text-lg text-gray-300">
-                    نحن هنا للإجابة على استفساراتك، تواصل معنا وسنرد عليك في أقرب وقت ممكن
-                </p>
-            </div>
-            
-            <!-- Contact Form - LTR direction for better English alignment -->
-            <form id="contactForm" class="space-y-6 ltr-form">
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                    <input type="text" id="fullName" class="form-input" placeholder="Enter your full name">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                    <input type="tel" id="phoneNumber" class="form-input" placeholder="Enter your phone number">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                    <textarea id="message" class="form-input h-32 resize-none" maxlength="100" placeholder="Write your message here (100 characters max)"></textarea>
-                    <div class="char-counter"><span id="charCount">0</span>/100</div>
-                </div>
-                
-                <div class="flex justify-center mt-8">
-                    <button type="submit" class="send-button">
-                        <span>SEND</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 send-icon" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-8 text-center text-gray-400 text-sm">
-    <div class="container mx-auto px-4">
-        <p>© 2023 RÊVOLA. All rights reserved.</p>
-    </div>
-</footer>
-
 <script>
-    // Menu functionality
-    const menuBtn = document.getElementById('menuBtn');
+    // Sidebar toggle functionality
+    const menuToggle = document.getElementById('menuToggle');
     const closeMenu = document.getElementById('closeMenu');
     const sidebar = document.getElementById('sidebar');
-    const menuItems = document.querySelectorAll('.menu-item');
     
-    menuBtn.addEventListener('click', () => {
+    menuToggle.addEventListener('click', () => {
         sidebar.classList.add('open');
     });
     
@@ -743,174 +572,74 @@ Now when you click on the "تعرف علينا" button in the main section, it w
         sidebar.classList.remove('open');
     });
     
-    // Close sidebar when clicking a menu item
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
             sidebar.classList.remove('open');
-            
-            // Update active menu item
-            menuItems.forEach(menuItem => {
-                menuItem.classList.remove('active');
-            });
-            item.classList.add('active');
-        });
-    });
-    
-    // Modal functionality
-    const signupBtn = document.getElementById('signupBtn');
-    const closeModal = document.getElementById('closeModal');
-    const signupModal = document.getElementById('signupModal');
-    
-    signupBtn.addEventListener('click', () => {
-        signupModal.classList.add('open');
-    });
-    
-    closeModal.addEventListener('click', () => {
-        signupModal.classList.remove('open');
-    });
-    
-    // Close modal when clicking outside
-    signupModal.addEventListener('click', (e) => {
-        if (e.target === signupModal) {
-            signupModal.classList.remove('open');
         }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Close sidebar if open
+            sidebar.classList.remove('open');
+        });
     });
     
     // Gallery functionality
-    const gallery = document.querySelector('.gallery');
-    const dots = document.querySelectorAll('.gallery-dot');
-    const prevBtn = document.querySelector('.gallery-arrow.prev');
-    const nextBtn = document.querySelector('.gallery-arrow.next');
-    let currentSlide = 0;
-    const totalSlides = dots.length;
+    let slideIndex = 1;
+    showSlides(slideIndex);
     
-    function goToSlide(slideIndex) {
-        if (slideIndex < 0) {
-            slideIndex = totalSlides - 1;
-        } else if (slideIndex >= totalSlides) {
-            slideIndex = 0;
-        }
-        
-        gallery.style.transform = `translateX(-${slideIndex * 100}%)`;
-        currentSlide = slideIndex;
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            if (index === currentSlide) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
     }
     
-    // Add event listeners for dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            goToSlide(index);
-        });
-    });
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
     
-    // Add event listeners for arrows
-    prevBtn.addEventListener('click', () => {
-        goToSlide(currentSlide - 1);
-    });
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("gallery-slide");
+        let dots = document.getElementsByClassName("gallery-dot");
+        
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        
+        for (i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        
+        for (i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+        
+        slides[slideIndex-1].classList.add("active");
+        dots[slideIndex-1].classList.add("active");
+    }
     
-    nextBtn.addEventListener('click', () => {
-        goToSlide(currentSlide + 1);
-    });
-    
-    // Auto slide every 5 seconds
-    setInterval(() => {
-        goToSlide(currentSlide + 1);
+    // Auto slide
+    let autoSlideInterval = setInterval(() => {
+        changeSlide(1);
     }, 5000);
     
-    // Video play button functionality
-    const playButton = document.querySelector('.play-button');
-    playButton.addEventListener('click', () => {
-        alert('Video playback would start here in a real implementation.');
+    // Pause auto slide when hovering over gallery
+    const galleryContainer = document.querySelector('.gallery-container');
+    galleryContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
     });
     
-    // Character counter for message field
-    const messageField = document.getElementById('message');
-    const charCount = document.getElementById('charCount');
-    
-    messageField.addEventListener('input', () => {
-        const currentLength = messageField.value.length;
-        charCount.textContent = currentLength;
-        
-        // Change color when approaching limit
-        if (currentLength >= 80) {
-            charCount.style.color = 'rgba(239, 68, 68, 0.8)'; // Red when close to limit
-        } else if (currentLength >= 50) {
-            charCount.style.color = 'rgba(245, 158, 11, 0.8)'; // Orange when halfway
-        } else {
-            charCount.style.color = 'rgba(255, 255, 255, 0.6)'; // Default color
-        }
+    galleryContainer.addEventListener('mouseleave', () => {
+        autoSlideInterval = setInterval(() => {
+            changeSlide(1);
+        }, 5000);
     });
-    
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const fullName = document.getElementById('fullName').value;
-        const phoneNumber = document.getElementById('phoneNumber').value;
-        const message = messageField.value;
-        
-        // Simple validation
-        if (!fullName || !phoneNumber || !message) {
-            alert('Please fill in all fields.');
-            return;
-        }
-        
-        // In a real implementation, you would send this data to a server
-        alert('Thank you for your message! We will get back to you soon.');
-        contactForm.reset();
-        charCount.textContent = '0';
-        charCount.style.color = 'rgba(255, 255, 255, 0.6)';
-    });
-    
-    // Set active menu item based on scroll position
-    function setActiveMenuItemOnScroll() {
-        const sections = document.querySelectorAll('section, main');
-        const scrollPosition = window.scrollY + 100; // Offset for better detection
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                menuItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === `#${sectionId}`) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        });
-    }
-    
-    // Listen for scroll events
-    window.addEventListener('scroll', setActiveMenuItemOnScroll);
-    
-    // Initial call to set active menu item
-    setActiveMenuItemOnScroll();
-    
-    // About Us button functionality - scroll to About Us section
-    const aboutUsBtn = document.getElementById('aboutUsBtn');
-    aboutUsBtn.addEventListener('click', () => {
-        const aboutSection = document.getElementById('about');
-        aboutSection.scrollIntoView({ behavior: 'smooth' });
-        
-        // Update active menu item
-        menuItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === '#about') {
-                item.classList.add('active');
-            }
-        });
-    });
-</script
+</script>
 
