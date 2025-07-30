@@ -760,7 +760,7 @@
                     <li><a href="#" onclick="showSection('gallery')">المعرض</a></li>
                     <li><a href="#" onclick="showSection('about')">من نحن</a></li>
                     <li><a href="#" onclick="showSection('contact')">تواصل معنا</a></li>
-                    <li><a href="#" onclick="showSection('order')">اطلب الآن</a></li>
+                    <li><a href="#" onclick="showSection('services')">اطلب الآن</a></li>
                 </ul>
                 <a href="#" class="logo">🌷 Tulipola</a>
             </div>
@@ -795,7 +795,7 @@
             <div class="hero">
                 <h1>🌷 مرحباً بكم في Tulipola</h1>
                 <p>نحن نقدم أجمل التصاميم الجرافيكية بلمسة فنية راقية وإبداعية. من الشعارات إلى العروض التقديمية، نحن هنا لنحقق رؤيتكم الإبداعية</p>
-                <a href="#" class="cta-button" onclick="showSection('order')">اطلب تصميمك الآن</a>
+                <a href="#" class="cta-button" onclick="showSection('services')">اختر خدمتك المفضلة</a>
             </div>
 
             <!-- معرض الصور -->
@@ -1037,6 +1037,11 @@
 
         <!-- نموذج الطلب -->
         <section id="order" class="section hidden">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button onclick="showSection('services')" style="background: linear-gradient(135deg, #8C6E65, #A29286); color: white; padding: 12px 25px; border: none; border-radius: 25px; font-size: 1.1rem; font-family: 'Amiri', serif; cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px;">
+                    ← العودة للخدمات 🎨
+                </button>
+            </div>
             <h2>📝 اطلب تصميمك الآن</h2>
             <div class="order-form">
                 <form id="orderForm">
@@ -1154,6 +1159,10 @@
             };
             description.value = `أريد تصميم: ${serviceNames[serviceType]}\n\nالتفاصيل: `;
             description.focus();
+            
+            // تحديث عنوان صفحة الطلب
+            const orderTitle = document.querySelector('#order h2');
+            orderTitle.innerHTML = `📝 طلب ${serviceNames[serviceType]}`;
         }
 
         // إظهار/إخفاء قائمة تسجيل الدخول
@@ -1323,7 +1332,9 @@
             document.getElementById('state').addEventListener('change', handleStateChange);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96714394169a2835',t:'MTc1Mzg0MDg0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967155c7b2782820',t:'MTc1Mzg0MTU4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
+
 
 
